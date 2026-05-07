@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>La Esquina del Barrio - Botón YouTube</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@700;900&display=swap" rel="stylesheet">
+<title>La Esquina del Barrio - Suscríbete</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@700;900&display=swap');
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
@@ -15,24 +16,24 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 50px;
-    font-family: 'Nunito', sans-serif;
-    overflow: hidden;
+    gap: 32px;
+    font-family: 'Nunito', Arial, sans-serif;
   }
 
   body::before {
     content: '';
     position: fixed;
     width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(255,0,0,0.12) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(255,0,0,0.15) 0%, transparent 70%);
     top: 50%; left: 50%;
     transform: translate(-50%,-50%);
     pointer-events: none;
     animation: pulse-bg 3s ease-in-out infinite;
+    z-index: 0;
   }
   @keyframes pulse-bg {
     0%,100% { opacity:.6; transform:translate(-50%,-50%) scale(1); }
-    50%     { opacity:1;  transform:translate(-50%,-50%) scale(1.1); }
+    50%     { opacity:1;  transform:translate(-50%,-50%) scale(1.15); }
   }
 
   .btn-wrapper {
@@ -41,13 +42,17 @@
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    position: relative;
+    z-index: 1;
   }
 
+  /* ── ANCHOR ── */
   .yt-link {
     text-decoration: none;
     display: block;
   }
 
+  /* ── BUTTON ── */
   .yt-cta {
     position: relative;
     display: inline-flex;
@@ -68,8 +73,8 @@
     align-items: center;
     justify-content: center;
     gap: 14px;
-    padding: 22px 52px;
-    min-width: 320px;
+    padding: 22px 48px;
+    min-width: 300px;
     border-radius: 18px;
     background: linear-gradient(135deg,#ff2e2e 0%,#cc0000 50%,#990000 100%);
     box-shadow:
@@ -85,9 +90,8 @@
 
   .face-top::before {
     content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,.18) 50%, transparent 70%);
+    position: absolute; inset: 0;
+    background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,.2) 50%, transparent 70%);
     background-size: 200% 100%;
     background-position: 200% 0;
     border-radius: 18px;
@@ -100,8 +104,7 @@
   }
 
   .face-bottom {
-    position: absolute;
-    inset: 0; z-index: 1;
+    position: absolute; inset: 0; z-index: 1;
     border-radius: 18px;
     background: linear-gradient(180deg,#6b0000 0%,#3d0000 100%);
     transform: translateZ(-6px) translateY(14px);
@@ -110,10 +113,10 @@
 
   .btn-text {
     position: relative; z-index: 3;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px; letter-spacing: 3px;
+    font-family: 'Bebas Neue', Impact, sans-serif;
+    font-size: 30px; letter-spacing: 3px;
     color: #fff;
-    text-shadow: 0 1px 0 rgba(255,255,255,.4),0 2px 8px rgba(0,0,0,.6),0 0 20px rgba(255,150,150,.4);
+    text-shadow: 0 1px 0 rgba(255,255,255,.4), 0 2px 8px rgba(0,0,0,.6);
     pointer-events: none;
     transition: letter-spacing .3s ease;
   }
@@ -129,10 +132,9 @@
 
   .arrow {
     position: relative; z-index: 3;
-    font-size: 22px; color: rgba(255,255,255,.9);
+    font-size: 20px; color: rgba(255,255,255,.9);
     pointer-events: none;
     transition: transform .3s ease;
-    flex-shrink: 0;
   }
 
   .particles-container {
@@ -142,39 +144,42 @@
   }
 
   /* HOVER */
-  .yt-link:not(.done) .yt-cta:hover { transform: rotateX(15deg) translateY(-4px); filter: brightness(1.1); }
+  .yt-link:not(.done) .yt-cta:hover {
+    transform: rotateX(15deg) translateY(-4px);
+    filter: brightness(1.12);
+  }
   .yt-link:not(.done) .yt-cta:hover .face-top {
-    transform: translateZ(12px);
-    box-shadow: 0 0 0 2px rgba(255,130,130,.6), inset 0 1px 0 rgba(255,255,255,.35), inset 0 -2px 0 rgba(0,0,0,.3), 0 12px 48px rgba(255,0,0,.7), 0 4px 12px rgba(0,0,0,.8);
+    transform: translateZ(13px);
+    box-shadow: 0 0 0 2px rgba(255,130,130,.7), inset 0 1px 0 rgba(255,255,255,.35), 0 14px 50px rgba(255,0,0,.7), 0 4px 12px rgba(0,0,0,.8);
   }
   .yt-link:not(.done) .yt-cta:hover .btn-text { letter-spacing: 4px; }
-  .yt-link:not(.done) .yt-cta:hover .arrow    { transform: translateX(4px); }
+  .yt-link:not(.done) .yt-cta:hover .arrow    { transform: translateX(5px); }
   .yt-link:not(.done) .yt-cta:hover .yt-icon  { transform: scale(1.1) rotate(-5deg); }
 
-  /* ACTIVE PRESS */
-  .yt-link:not(.done) .yt-cta:active { transform: rotateX(15deg) translateY(4px); }
+  /* PRESS */
+  .yt-link:not(.done) .yt-cta:active {
+    transform: rotateX(15deg) translateY(5px);
+  }
   .yt-link:not(.done) .yt-cta:active .face-top {
     transform: translateZ(2px);
-    box-shadow: 0 0 0 2px rgba(255,80,80,.3), inset 0 2px 4px rgba(0,0,0,.4), 0 4px 16px rgba(255,0,0,.3);
+    box-shadow: 0 0 0 1px rgba(255,80,80,.3), inset 0 2px 4px rgba(0,0,0,.5);
   }
 
   /* DONE */
-  .yt-link.done { pointer-events: none; cursor: default; }
+  .yt-link.done { pointer-events: none; }
   .yt-link.done .yt-cta { transform: rotateX(15deg) translateY(2px); }
   .yt-link.done .face-top {
     background: linear-gradient(135deg,#2d6a2d 0%,#1a4a1a 50%,#0d300d 100%);
     transform: translateZ(4px);
-    box-shadow: 0 0 0 2px rgba(100,255,100,.3), inset 0 1px 0 rgba(255,255,255,.15), 0 6px 24px rgba(0,150,0,.4);
+    box-shadow: 0 0 0 2px rgba(100,255,100,.3), 0 6px 24px rgba(0,150,0,.4);
   }
-  .yt-link.done .face-bottom { background: linear-gradient(180deg,#0d2d0d 0%,#071507 100%); }
+  .yt-link.done .face-bottom { background: linear-gradient(180deg,#0d2d0d,#071507); }
   .yt-link.done .face-top::before { display: none; }
-  .yt-link.done .btn-text { color: #90ff90; text-shadow: 0 0 16px rgba(100,255,100,.6); }
+  .yt-link.done .btn-text { color: #90ff90; text-shadow: 0 0 16px rgba(100,255,100,.7); }
 
   /* PARTICLES */
   .particle {
-    position: absolute;
-    border-radius: 50%;
-    pointer-events: none;
+    position: absolute; border-radius: 50%; pointer-events: none;
     animation: pb .8s ease-out forwards;
   }
   @keyframes pb {
@@ -185,48 +190,29 @@
   /* RIPPLE */
   .ripple {
     position: absolute; border-radius: 50%;
-    background: rgba(255,255,255,.35);
+    background: rgba(255,255,255,.3);
     pointer-events: none;
     animation: ra .6s ease-out forwards; z-index: 5;
   }
   @keyframes ra {
     0%   { width:0;     height:0;     opacity:1; transform:translate(-50%,-50%); }
-    100% { width:300px; height:300px; opacity:0; transform:translate(-50%,-50%); }
+    100% { width:320px; height:320px; opacity:0; transform:translate(-50%,-50%); }
   }
 
   .hint {
-    font-size: 12px; color: rgba(255,255,255,.25);
-    letter-spacing: 1px; font-weight: 700;
+    font-size: 12px; color: rgba(255,255,255,.22);
+    letter-spacing: 1.5px; font-weight: 700;
     text-align: center; transition: color .4s;
+    font-family: Arial, sans-serif;
+    text-transform: uppercase;
+    position: relative; z-index: 1;
   }
-  .hint.success { color: rgba(100,255,100,.6); }
-
-  /* Badge explicativo */
-  .sub-badge {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 30px;
-    padding: 8px 18px;
-    font-size: 11px;
-    color: rgba(255,255,255,0.35);
-    letter-spacing: 1px;
-    font-weight: 700;
-  }
-  .sub-badge span { color: rgba(255,80,80,0.7); font-size: 14px; }
+  .hint.success { color: rgba(100,255,100,.65); }
 </style>
 </head>
 <body>
 
 <div class="btn-wrapper">
-
-  <!--
-    ?sub_confirmation=1 es el parámetro oficial de YouTube
-    que abre el popup de suscripción automáticamente al llegar al canal.
-    No requiere código extra — YouTube lo hace solo.
-  -->
   <a class="yt-link"
      href="https://www.youtube.com/@laesquinadelbarriopodcast?sub_confirmation=1"
      target="_blank"
@@ -250,22 +236,14 @@
     </div>
   </a>
 
-  <div class="hint" id="hint">Un clic → YouTube te pide suscribirte automáticamente</div>
-
-  <div class="sub-badge">
-    <span>🔔</span> Usa <code style="color:rgba(255,150,150,0.8);font-size:10px">?sub_confirmation=1</code> — parámetro oficial de YouTube
-  </div>
-
+  <div class="hint" id="hint">🔔 Toca para suscribirte a La Esquina del Barrio</div>
 </div>
 
 <script>
   let done = false;
 
   function handleClick(e) {
-    if (done) {
-      e.preventDefault();
-      return;
-    }
+    if (done) { e.preventDefault(); return; }
     done = true;
 
     const link    = document.getElementById('ctaLink');
@@ -277,35 +255,33 @@
     // Ripple
     const ripple = document.createElement('div');
     ripple.className = 'ripple';
-    ripple.style.left = (e.offsetX || 160) + 'px';
+    ripple.style.left = (e.offsetX || 150) + 'px';
     ripple.style.top  = (e.offsetY || 35)  + 'px';
     pcont.appendChild(ripple);
 
     // Particles
-    const colors = ['#ff4444','#ff8800','#ffdd00','#ff2222','#ffffff'];
+    const colors = ['#ff4444','#ff8800','#ffdd00','#ff2222','#fff'];
     for (let i = 0; i < 18; i++) {
       const p = document.createElement('div');
       p.className = 'particle';
       const angle = (i / 18) * Math.PI * 2;
       const dist  = 60 + Math.random() * 80;
-      p.style.cssText = `
-        left:50%; top:50%;
-        background:${colors[Math.floor(Math.random()*colors.length)]};
+      p.style.cssText = `left:50%;top:50%;
+        background:${colors[i % colors.length]};
         --tx:${Math.cos(angle)*dist}px;
         --ty:${Math.sin(angle)*dist}px;
-        animation-duration:${0.5+Math.random()*0.4}s;
+        animation-duration:${.5+Math.random()*.4}s;
         width:${4+Math.random()*8}px;
-        height:${4+Math.random()*8}px;
-      `;
+        height:${4+Math.random()*8}px;`;
       pcont.appendChild(p);
     }
 
     // Estado verde
     setTimeout(() => {
       link.classList.add('done');
-      btnText.textContent  = '¡Suscrito! ✓';
+      btnText.textContent  = '¡Listo! ✓';
       btnArrow.textContent = '✔';
-      hint.textContent = '🔔 ¡Gracias por suscribirte a La Esquina del Barrio!';
+      hint.textContent = '🎙️ ¡Bienvenido a La Esquina del Barrio!';
       hint.classList.add('success');
     }, 200);
   }
